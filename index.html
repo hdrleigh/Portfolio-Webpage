@@ -29,13 +29,12 @@ nav button:nth-child(odd){background:var(--baby)}
 .title-i span{display:inline-block;animation:pop .7s cubic-bezier(.3,1.8,.5,1) both,bob 3s ease-in-out infinite}
 @keyframes pop{from{transform:translateY(-60px) scale(.2) rotate(-20deg);opacity:0}}
 @keyframes bob{50%{transform:translateY(-6px) rotate(1.5deg)}}
-.cw.girl>*{animation:float 5s ease-in-out infinite}
 .cw.girl img,.cw.girl svg,.cw.cut img{width:100%;height:auto;display:block;pointer-events:none}
 .cw.cut img{filter:drop-shadow(3px 5px 3px #0004)}
 @keyframes float{50%{transform:translateY(-12px) rotate(2deg)}}
 .legs{transform-origin:150px 190px;animation:swing 1.6s ease-in-out infinite}@keyframes swing{50%{transform:rotate(14deg)}}
 .blink{animation:bl 4s infinite;transform-origin:center}@keyframes bl{96%,100%{transform:scaleY(1)}98%{transform:scaleY(.1)}}
-.cw.note>.sticky{position:relative;background:#ffe45c;padding:.55em .45em;min-height:4em;font-weight:700;line-height:1.05;box-shadow:4px 6px 0 #0003;animation:flut 3s infinite ease-in-out;white-space:pre-wrap}
+.cw.note>.sticky{position:relative;background:#ffe45c;padding:.55em .45em;min-height:4em;font-weight:700;line-height:1.05;box-shadow:4px 6px 0 #0003;white-space:pre-wrap}
 .cw.note>.sticky::before{content:"";position:absolute;top:-8px;left:50%;width:14px;height:14px;border-radius:50%;background:var(--mag);border:2px solid var(--ink)}
 @keyframes flut{50%{transform:rotate(-3deg) translateY(-3px)}}
 .cw.txt{white-space:pre-wrap}.cw.txt.hf h3{font-family:inherit}
@@ -54,13 +53,13 @@ nav button:nth-child(odd){background:var(--baby)}
 .tag:hover{transform:rotate(-3deg) scale(1.06)}.tag.gone{transform:scale(0);opacity:0;transition:.3s}
 .tag::after{content:" x";opacity:.7}.tag.hi{color:#12985d}
 /* collage */
-#cstage{position:relative;height:640px;margin:0 auto}
+#cstage{position:relative;height:640px;margin:0 auto;container-type:inline-size}
 .cw{position:absolute;touch-action:none;transition:transform .25s}
 .cw.img{background:#fff;padding:6px 6px 26px;box-shadow:3px 5px 0 #0003;border:1px solid #0002}
 .cw.img img,.cw.img .ph{width:100%;display:block;aspect-ratio:4/5;object-fit:cover}
 .ph{background:linear-gradient(135deg,var(--baby),#b8e8d1);display:grid;place-items:center;font:30px var(--f-hand);color:var(--ink)}
 .cw.txt{font-family:var(--f-col);line-height:1.35}
-.cw.txt h3{font:900 clamp(34px,5vw,64px)/.9 var(--f-chat);margin:0 0 6px;letter-spacing:-2px;transform:scaleX(.8);transform-origin:left}
+.cw.txt h3{font:900 3.2em/.9 var(--f-chat);margin:0 0 6px;letter-spacing:-2px;transform:scaleX(.8);transform-origin:left}
 .edit .cw{outline:2px dashed var(--mag);cursor:grab}.edit .cw::after{content:"";position:absolute;right:-8px;bottom:-8px;width:18px;height:18px;background:var(--mag);border-radius:50%;cursor:nwse-resize}
 /* bag */
 #stage{position:relative;height:600px;max-width:760px;margin:0 auto}
@@ -96,17 +95,25 @@ canvas#cv{display:block;width:100%;height:300px;border:2px dashed var(--ink);bac
 #admtog{position:fixed;right:12px;bottom:12px;z-index:51;display:none;padding:10px 16px;border-radius:30px;border:2.5px solid var(--ink);background:var(--gold);font:700 15px var(--f-col);cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
 @media(max-width:700px){.scene{padding:3vh 8px 3vh 54px}.dd{grid-template-columns:1fr}#girl{width:34%}.page{padding:16px}.tip{width:150px;margin-left:-75px}.it{width:80px}}
 #toast{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:60;background:var(--ink);color:#fff;padding:8px 16px;border-radius:20px;font:14px var(--f-col);opacity:0;transition:opacity .3s;pointer-events:none}
+/* animations: each item has its own */
+.an{animation-duration:var(--sp,4s);animation-iteration-count:infinite;animation-timing-function:ease-in-out}
+.an-float{animation-name:float}.an-bob{animation-name:bobb}.an-sway{animation-name:sway;transform-origin:50% 0}.an-wiggle{animation-name:wig2}.an-pulse{animation-name:pulse}.an-spin{animation-name:spin;animation-timing-function:linear}
+.an-popin{animation:pop .8s cubic-bezier(.3,1.8,.5,1) both}.an-hoverpop{transition:transform .25s cubic-bezier(.3,1.8,.5,1)}.an-hoverpop:hover{transform:scale(1.15) rotate(-4deg)}
+@keyframes bobb{50%{transform:translateY(-8px)}}@keyframes sway{0%,100%{transform:rotate(3deg)}50%{transform:rotate(-3deg)}}@keyframes wig2{20%{transform:rotate(-8deg)}40%{transform:rotate(8deg)}60%{transform:rotate(-5deg)}80%{transform:rotate(5deg)}}@keyframes pulse{50%{transform:scale(1.1)}}@keyframes spin{to{transform:rotate(360deg)}}
+.edit .an{animation:none}
+.edtog{display:none;position:absolute;top:10px;left:12px;z-index:30;padding:6px 12px;border:2.5px solid var(--ink);border-radius:20px;background:var(--gold);font:700 13px var(--f-col);cursor:pointer;box-shadow:2px 3px 0 var(--ink);color:var(--ink)}body.isadm .edtog{display:block}
+#adm .savebar{position:sticky;bottom:-12px;margin:10px -12px -12px;padding:10px 12px;background:#fff8ec;border-top:3px solid var(--ink)}#adm .savebar button{width:100%;padding:12px;font-size:16px;font-weight:700;background:var(--pink);color:#fff}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head><body>
 <canvas id="live"></canvas>
 <nav aria-label="pages"><button data-g="welcome" title="hello">hi</button><button data-g="about" title="about me">me</button><button data-g="collage" title="collage">mix</button><button data-g="bag" title="my bag">bag</button><button data-g="doodle" title="leave something">✎</button></nav>
 
-<section class="scene" id="welcome"><div class="page"><span class="star" style="left:8%;top:10%">✦</span><span class="star" style="right:12%;bottom:18%;color:var(--gold)">✦</span><div id="cover"></div></div></section>
+<section class="scene" id="welcome"><div class="page"><span class="star" style="left:8%;top:10%">✦</span><span class="star" style="right:12%;bottom:18%;color:var(--gold)">✦</span><div id="cover"></div><button class="edtog" data-ed="cover">✎ move &amp; resize things</button></div></section>
 
 <section class="scene" id="about"><div class="page pinkpg"><div class="chat"><div class="row"><div class="av"></div><div class="bub g" id="c1"></div></div><div class="row r"><div class="bub c" id="c2"></div></div>
 <div class="card"><h2><i>★</i>about <b>ME</b></h2><div class="tags" id="tags"></div></div></div></div></section>
 
-<section class="scene" id="collage"><div class="page"><div id="cstage"></div></div></section>
+<section class="scene" id="collage"><div class="page"><div id="cstage"></div><button class="edtog" data-ed="collage">✎ move &amp; resize things</button></div></section>
 
 <section class="scene" id="bag"><div class="page pinkpg"><div id="stage"><button id="bagbtn" aria-label="open my bag"></button><div class="bagnote">tap my bag!</div></div></div></section>
 
@@ -162,7 +169,9 @@ const girlSVG=`<svg viewBox="0 0 300 300"><defs><radialGradient id="pl" cx=".35"
 <ellipse cx="150" cy="75" rx="40" ry="46" fill="#e9a883" stroke="#4a2c20" stroke-width="4"/><path d="M108 70c10-45 74-45 84 0-20-14-60-14-84 0z" fill="#6b3a24"/>
 <g class="blink"><ellipse cx="135" cy="80" rx="5" ry="7" fill="#4a2c20"/><ellipse cx="165" cy="80" rx="5" ry="7" fill="#4a2c20"/></g><path d="M138 98q12 10 24 0" stroke="#c2185b" stroke-width="4" fill="none" stroke-linecap="round"/></svg>`;
 const bagSVG=`<svg viewBox="0 0 250 240"><path d="M70 70C60 -10 190 -10 180 70" fill="none" stroke="#2b1a14" stroke-width="10"/><path d="M30 90q95-30 190 0l14 110q-109 40-218 0z" fill="#5b3a40" stroke="#2b1a14" stroke-width="5"/><rect x="60" y="130" width="130" height="50" rx="10" fill="#6d4950" stroke="#2b1a14" stroke-width="4"/><circle cx="195" cy="120" r="12" fill="#f8e9a8" stroke="#2b1a14" stroke-width="3"/></svg>`;
-const fsz=c=>c.t==='title'?c.w*.17*S.ty.title.s/100+'cqw':c.t==='note'?c.w*.2*(c.s||100)/100+'cqw':'';
+const ANIMS=[['none','none'],['float','floating'],['bob','bobbing'],['sway','swaying'],['wiggle','wiggling'],['pulse','pulsing'],['spin','slow spin'],['popin','pop in when page loads'],['hoverpop','pop up on hover']];
+const effA=c=>c.a!==undefined?c.a:c.t==='girl'?'float':c.t==='note'?'sway':'none';
+const fsz=(c,arr)=>c.t==='title'?c.w*.17*S.ty.title.s/100+'cqw':c.t==='note'?c.w*.2*(c.s||100)/100+'cqw':c.t==='txt'?c.w*.055*(c.s||100)/100*(arr===S.cw?S.ty.col.s/100:1)+'cqw':'';
 function mk(c,arr){const d=document.createElement('div');d.className='cw '+c.t+(c.f?' hf':'');d._ref=c;d._arr=arr;d.style.cssText=`left:${c.x}%;top:${c.y}%;width:${c.w}%;transform:rotate(${c.r||0}deg)`;
 const fam=c.f?`font-family:"${c.f}",cursive;`:'',col=c.c?`color:${c.c};`:'',sc=c.s||100;
 if(c.t==='title'){d.style.fontSize=fsz(c);d.style.color=S.ty.title.c;d.innerHTML='<div class="title-i">'+S.title.split(' ').map((w,k)=>`<span class="w">${[...w].map((ch,i)=>`<span style="animation-delay:${(k*5+i)*.06}s,${(k*5+i)*.06+.7}s">${esc(ch)}</span>`).join('')}</span> `).join('')+'</div>'}
@@ -170,20 +179,22 @@ else if(c.t==='girl')d.innerHTML=`<div>${S.girl?`<img src="${S.girl}" alt="">`:g
 else if(c.t==='note'){d.style.cssText+=`;font-size:${fsz(c)};${fam}${col||'color:'+S.ty.hand.c+';'}`;if(!c.f)d.style.fontFamily='var(--f-hand)';d.innerHTML=`<div class="sticky">${esc(c.txt!==undefined?c.txt:S.note)}</div>`}
 else if(c.t==='cut')d.innerHTML=`<img src="${c.src}" alt="">`;
 else if(c.t==='img')d.innerHTML=c.src?`<img src="${c.src}" alt="">`:'<div class="ph">your photo</div>';
-else{d.style.cssText+=`;${fam}${col}font-size:${sc}%`;d.innerHTML=`<h3>${esc(c.h||'')}</h3><div>${esc(c.html||'')}</div>`}
-return d}
-function rCover(){const st=$('#cover');st.innerHTML='';st.classList.toggle('edit',!!st._ed);S.cover.forEach(c=>st.append(mk(c,S.cover)))}
+else{d.style.cssText+=`;${fam}${col}font-size:${fsz(c,arr)}`;d.innerHTML=`<h3>${esc(c.h||'')}</h3><div>${esc(c.html||'')}</div>`}
+d.innerHTML=`<div class="an an-${effA(c)}" style="--sp:${c.sp||4}s">${d.innerHTML}</div>`;return d}
+function rCover(){const st=$('#cover');st.innerHTML='';st.classList.toggle('edit',!!st._ed);S.cover.forEach(c=>st.append(mk(c,S.cover)));edLabel()}
+function edLabel(){document.querySelectorAll('.edtog').forEach(b=>{const st=$(b.dataset.ed==='cover'?'#cover':'#cstage');b.textContent=st._ed?'✓ done moving':'✎ move & resize things'})}
+document.querySelectorAll('.edtog').forEach(b=>b.onclick=()=>{const st=$(b.dataset.ed==='cover'?'#cover':'#cstage');st._ed=!st._ed;b.dataset.ed==='cover'?rCover():rCollage();admin()});
 function rAbout(){$('#c1').textContent=S.chat1;$('#c2').textContent=S.chat2;$('#tags').innerHTML='';S.tags.forEach((t,i)=>{const b=document.createElement('button');b.className='tag'+(i<3?' hi':'');b.textContent=t;b.onclick=()=>{b.classList.add('gone');setTimeout(()=>b.remove(),300)};$('#tags').append(b)})}
 function rBag(){const st=$('#stage');st.classList.remove('open');st.querySelectorAll('.it').forEach(e=>e.remove());$('#bagbtn').innerHTML=S.bag?`<img src="${S.bag}" alt="my bag">`:bagSVG;const b=S.bub;
 S.items.forEach(it=>{const d=document.createElement('div');d.className='it';d.tabIndex=0;d.dataset.x=it.x;d.dataset.y=it.y;d.style.cssText=`left:50%;top:18%;transform:translate(-50%,0) scale(.3)`;
 d.innerHTML=`<img src="${it.img}" alt="${esc(it.name)}"><div class="tip" style="background:${b.bg};color:${b.c};font-family:'${b.f}',cursive;font-size:${17*b.s/100}px"><b>${esc(it.name)}</b>${esc(it.desc)}</div>`;
 d.onclick=()=>d.classList.toggle('t');d.dataset.r=it.r;st.append(d)})}
 $('#bagbtn').onclick=()=>{const st=$('#stage'),o=st.classList.toggle('open');st.querySelectorAll('.it').forEach((d,i)=>{setTimeout(()=>{d.style.left=o?d.dataset.x+'%':'50%';d.style.top=o?d.dataset.y+'%':'18%';d.style.transform=o?`translate(-50%,0) rotate(${d.dataset.r}deg)`:'translate(-50%,0) scale(.3)'},o?350+i*140:0)});document.querySelector('.bagnote').style.opacity=o?0:1};
-function rCollage(){const st=$('#cstage');st.innerHTML='';st.classList.toggle('edit',!!st._ed);S.cw.forEach(c=>st.append(mk(c,S.cw)))}
+function rCollage(){const st=$('#cstage');st.innerHTML='';st.classList.toggle('edit',!!st._ed);S.cw.forEach(c=>st.append(mk(c,S.cw)));edLabel()}
 let Z=10;function editable(st,rr){st.addEventListener('pointerdown',e=>{if(!st._ed)return;const d=e.target.closest('.cw');if(!d)return;e.preventDefault();const c=d._ref,R=st.getBoundingClientRect(),b=d.getBoundingClientRect(),rz=e.clientX>b.right-14&&e.clientY>b.bottom-14,sx=e.clientX,sy=e.clientY,ox=c.x,oy=c.y,ow=c.w;d.style.zIndex=++Z;d.setPointerCapture(e.pointerId);
-const mv=m=>{const dx=(m.clientX-sx)/R.width*100,dy=(m.clientY-sy)/R.height*100;if(rz){c.w=Math.max(6,ow+dx);d.style.width=c.w+'%';const f=fsz(c);if(f)d.style.fontSize=f}else{c.x=ox+dx;c.y=oy+dy;d.style.left=c.x+'%';d.style.top=c.y+'%'}};
+const mv=m=>{const dx=(m.clientX-sx)/R.width*100,dy=(m.clientY-sy)/R.height*100;if(rz){c.w=Math.max(6,ow+dx);d.style.width=c.w+'%';const f=fsz(c,d._arr);if(f)d.style.fontSize=f}else{c.x=ox+dx;c.y=oy+dy;d.style.left=c.x+'%';d.style.top=c.y+'%'}};
 const up=()=>{d.removeEventListener('pointermove',mv);d.removeEventListener('pointerup',up);d._arr.push(d._arr.splice(d._arr.indexOf(c),1)[0]);save()};d.addEventListener('pointermove',mv);d.addEventListener('pointerup',up)});
-st.addEventListener('dblclick',e=>{const d=e.target.closest('.cw');if(st._ed&&d&&!d._ref.core&&confirm('Delete this piece?')){d._arr.splice(d._arr.indexOf(d._ref),1);save();rr()}})}
+st.addEventListener('dblclick',e=>{const d=e.target.closest('.cw');if(st._ed&&d&&confirm('Delete this piece?')){d._arr.splice(d._arr.indexOf(d._ref),1);save();rr()}})}
 editable($('#cstage'),rCollage);editable($('#cover'),rCover);
 
 /* doodle */
@@ -211,21 +222,22 @@ document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>document.getEle
 /* admin */
 const fileURL=(f,max=900)=>new Promise(res=>{const r=new FileReader();r.onload=()=>{if(!f.type.startsWith('image/')||f.type==='image/svg+xml'||f.type==='image/gif')return res(r.result);const i=new Image();i.onload=()=>{const k=Math.min(1,max/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);res(c.toDataURL(f.type==='image/jpeg'?'image/jpeg':'image/png',.85))};i.src=r.result};r.readAsDataURL(f)});
 async function host(b,name){const r=await fetch('/api/upload?name='+encodeURIComponent(name||'file'),{method:'POST',headers:{...hdr(),'content-type':b.type||'application/octet-stream'},body:b});if(!r.ok)throw new Error(r.status===413?'file too big (limit about 4MB)':'upload failed ('+r.status+')');return(await r.json()).url}
-async function img(f,max){const d=await img(f,max);if(!API)return d;return host(await(await fetch(d)).blob(),f.name)}
+function fixUrl(u){if(/(drive|docs)\.google\.com/.test(u)){const m=u.match(/\/d\/([\w-]+)/)||u.match(/[?&]id=([\w-]+)/);return m?'https://lh3.googleusercontent.com/d/'+m[1]:''}return/^https?:\/\//.test(u)?u:''}
+async function img(f,max){const d=await fileURL(f,max);if(!API)return d;return host(await(await fetch(d)).blob(),f.name)}
 const get=(o,p)=>p.split('.').reduce((a,k)=>a&&a[k],o);const setp=(o,p,v)=>{const k=p.split('.');const l=k.pop();k.reduce((a,x)=>a[x],o)[l]=v};
 const fsel=p=>`<select data-p="${p}">${allFonts().map(f=>`<option ${get(S,p)===f?'selected':''}>${f}</option>`).join('')}</select>`;
 const NAMES={title:'Title',girl:'Girl',note:'Sticky note',cut:'Cut-out',img:'Photo',txt:'Text'};
-const fields=(k,i,c)=>{const P=`data-p="${k}.${i}.`;return`<div class="li" style="display:block"><b>${NAMES[c.t]} ${i+1}</b><label>tilt°<input type="number" ${P}r" value="${c.r||0}"></label>`+
+const fields=(k,i,c)=>{const P=`data-p="${k}.${i}.`;return`<div class="li" style="display:block"><b>${NAMES[c.t]} ${i+1}</b><label>tilt°<input type="number" ${P}r" value="${c.r||0}"></label><label>animation<select ${P}a">${ANIMS.map(([v,n])=>`<option value="${v}" ${effA(c)===v?'selected':''}>${n}</option>`).join('')}</select></label><label>animation speed (seconds per loop)<input type="number" step=".5" min=".5" ${P}sp" value="${c.sp||4}"></label>`+
 (c.t==='txt'?`<label>heading<input ${P}h" value="${esc(c.h||'')}"></label><label>text<textarea rows="3" ${P}html">${esc(c.html||'')}</textarea></label>`:'')+
 (c.t==='note'&&!c.core?`<label>text<textarea rows="2" ${P}txt">${esc(c.txt||'')}</textarea></label>`:'')+
 (c.t==='txt'||c.t==='note'?`<label>font<select ${P}f">${['',...allFonts()].map(f=>`<option value="${f}" ${(c.f||'')===f?'selected':''}>${f||'(default)'}</option>`).join('')}</select></label><label>colour<input type="color" ${P}c" value="${c.c||S.ty.hand.c}"></label><label>size %<input type="number" ${P}s" value="${c.s||100}"></label>`:'')+
-(c.core?'':`<button data-delc="${k}.${i}">delete</button>`)+'</div>'};
+`<button data-delc="${k}.${i}">delete this</button>`+'</div>'};
 const typo=(k,n)=>`<b>${n}</b><label>font${fsel('ty.'+k+'.f')}</label><label>colour<input type="color" data-p="ty.${k}.c" value="${S.ty[k].c}"></label><label>size %<input type="number" data-p="ty.${k}.s" value="${S.ty[k].s}" min="40" max="300"></label>`;
 function admin(){const a=$('#adm'),open=[...a.querySelectorAll('details')].map(d=>d.open);
 a.innerHTML=`<h3>my admin ✎</h3>
 <details><summary>Welcome &amp; About</summary><div class="in"><label>title<input data-p="title" value="${esc(S.title)}"></label><label>sticky note<input data-p="note" value="${esc(S.note)}"></label>
-<label>girl image (png with transparent bg)<input type="file" data-up="girl" accept="image/*"></label><button data-act="nogirl">use drawn girl</button>
-<b>Cover page layout</b><button data-act="editcover">${$('#cover')._ed?'Stop editing':'Edit cover: drag, corner dot to resize, double-click to delete'}</button><label>add cut-out image<input type="file" data-cutadd accept="image/*"></label><button data-act="addctxt">+ text</button><button data-act="addnote">+ sticky note</button>${S.cover.map((c,i)=>fields('cover',i,c)).join('')}
+<label>girl image (png with transparent bg)<input type="file" data-up="girl" accept="image/*"></label><input data-urlfor="girl" placeholder="…or paste an image link, then press Enter"><button data-act="nogirl">use drawn girl</button>
+<b>Cover page layout</b><button data-act="editcover">${$('#cover')._ed?'Stop editing':'Edit cover: drag, corner dot to resize, double-click to delete'}</button><label>add cut-out image<input type="file" data-cutadd accept="image/*"></label><input data-urladd="cover:cut" placeholder="…or paste a link, then press Enter"><button data-act="addctxt">+ text</button><button data-act="addnote">+ sticky note</button><label>add photo (white border)<input type="file" data-photoadd accept="image/*"></label><input data-urladd="cover:img" placeholder="…or paste a link, then press Enter"><button data-act="resetcover">reset cover layout</button>${S.cover.map((c,i)=>fields('cover',i,c)).join('')}
 <label>chat line 1<input data-p="chat1" value="${esc(S.chat1)}"></label><label>chat line 2<input data-p="chat2" value="${esc(S.chat2)}"></label>
 <label>tags (one per line)<textarea data-tags rows="6">${esc(S.tags.join('\n'))}</textarea></label></div></details>
 <details><summary>Fonts, colours &amp; sizes</summary><div class="in"><label>upload font pack (.ttf .otf .woff .woff2)<input type="file" data-font accept=".ttf,.otf,.woff,.woff2" multiple></label>
@@ -233,42 +245,49 @@ ${typo('title','Title')}${typo('chat','About me')}${typo('col','Collage text')}$
 <b>Bag bubbles</b><label>font${fsel('bub.f')}</label><label>text colour<input type="color" data-p="bub.c" value="${S.bub.c}"></label><label>bubble colour<input type="color" data-p="bub.bg" value="${S.bub.bg}"></label><label>size %<input type="number" data-p="bub.s" value="${S.bub.s}"></label>
 <b>Palette</b>${['pink','butter','ink','mint'].map(k=>`<label>${k}<input type="color" data-p="col.${k}" value="${S.col[k]}"></label>`).join('')}</div></details>
 <details><summary>Background</summary><div class="in"><label>type<select data-p="bg.type">${['gradient','sparkles','hearts','image'].map(t=>`<option ${S.bg.type===t?'selected':''} value="${t}">${t==='gradient'?'animated gradient':t==='sparkles'?'gradient + floating sparkles':t==='hearts'?'gradient + floating hearts':'uploaded image'}</option>`).join('')}</select></label>
-<label>colour 1<input type="color" data-p="bg.c1" value="${S.bg.c1}"></label><label>colour 2<input type="color" data-p="bg.c2" value="${S.bg.c2}"></label><label>image<input type="file" data-up="bg.img" accept="image/*"></label></div></details>
+<label>colour 1<input type="color" data-p="bg.c1" value="${S.bg.c1}"></label><label>colour 2<input type="color" data-p="bg.c2" value="${S.bg.c2}"></label><label>image<input type="file" data-up="bg.img" accept="image/*"></label><input data-urlfor="bg.img" placeholder="…or paste an image link, then press Enter"></div></details>
 <details><summary>Collage (move &amp; resize)</summary><div class="in"><button data-act="edit">${$('#cstage')._ed?'Stop editing':'Edit collage: drag, resize corner dot, double-click to delete'}</button>
-<label>add photo<input type="file" data-cadd accept="image/*"></label><button data-act="addtxt">+ text block</button>
+<label>add photo<input type="file" data-cadd accept="image/*"></label><input data-urladd="cw:img" placeholder="…or paste a link, then press Enter"><button data-act="addtxt">+ text block</button>
 ${S.cw.map((c,i)=>c.t==='txt'?fields('cw',i,c):'').join('')}</div></details>
-<details><summary>What's in my bag</summary><div class="in"><label>bag image<input type="file" data-up="bag" accept="image/*"></label><button data-act="nobag">use drawn bag</button>
-<b>Add item (cut-out png)</b><input id="ni" type="file" accept="image/*"><input id="nn" placeholder="name"><textarea id="nd" placeholder="description" rows="2"></textarea><button data-act="additem">Add item</button>
+<details><summary>What's in my bag</summary><div class="in"><label>bag image<input type="file" data-up="bag" accept="image/*"></label><input data-urlfor="bag" placeholder="…or paste an image link, then press Enter"><button data-act="nobag">use drawn bag</button>
+<b>Add item (cut-out png)</b><input id="ni" type="file" accept="image/*"><input id="nl" placeholder="…or paste an image link"><input id="nn" placeholder="name"><textarea id="nd" placeholder="description" rows="2"></textarea><button data-act="additem">Add item</button>
 ${S.items.map((it,i)=>`<div class="li"><img src="${it.img}"><span>${esc(it.name)}</span><span><input type="number" style="width:48px" title="x %" data-p="items.${i}.x" value="${it.x}"><input type="number" style="width:48px" title="y %" data-p="items.${i}.y" value="${it.y}"><button data-del="${i}">✕</button></span></div>`).join('')}</div></details>
 <details><summary>Inbox (${S.msgs.length})</summary><div class="in">${S.msgs.map((m,i)=>`<div class="li" style="display:block"><small>${esc(fmt(m.date))}</small><p style="margin:2px 0">${esc(m.text)}</p>${m.img?`<img src="${m.img}" style="max-width:100%;background:#fffdf3">`:''}<button data-delm="${i}">delete</button></div>`).join('')||'nothing yet'}</div></details>
-<details><summary>Backup</summary><div class="in"><button data-act="export">Download my settings</button><label>restore<input type="file" data-imp accept=".json"></label><button data-act="reset">Reset everything</button></div></details>`;
+<details><summary>Backup</summary><div class="in"><button data-act="export">Download my settings</button><label>restore<input type="file" data-imp accept=".json"></label><button data-act="reset">Reset everything</button></div></details>
+<div class="savebar"><button data-act="save">Save changes</button></div>`;
 a.querySelectorAll('details').forEach((d,i)=>d.open=!!open[i])}
 function all(){save();theme();rCover();rAbout();rBag();rCollage()}
 $('#adm').addEventListener('input',e=>{const t=e.target;if(t.dataset.p){let v=t.value;if(t.type==='number')v=+v;setp(S,t.dataset.p,v);save();theme();if(!t.dataset.p.startsWith('bg')&&!t.dataset.p.startsWith('col.'))all()}
 if(t.dataset.tags!==undefined){S.tags=t.value.split('\n').map(x=>x.trim()).filter(Boolean);save();rAbout()}});
 $('#adm').addEventListener('change',async e=>{const t=e.target,f=t.files&&t.files[0];try{
+if(t.dataset.urlfor||t.dataset.urladd){const u=fixUrl(t.value.trim());if(!u)return alert('That doesn’t look like an image link. For Google Drive, set the file to “Anyone with the link” and paste its share link.');
+if(t.dataset.urlfor){setp(S,t.dataset.urlfor,u);if(t.dataset.urlfor==='bg.img')S.bg.type='image'}else{const[k,ty]=t.dataset.urladd.split(':');S[k].push(k==='cw'?{t:'img',src:u,x:30,y:30,w:24,r:0}:{t:ty,src:u,x:35,y:30,w:22,r:0})}
+all();admin();return}
 if(t.tagName==='SELECT'){all();admin()}
 if(t.dataset.up&&f){setp(S,t.dataset.up,await img(f,t.dataset.up==='bg.img'?1600:700));if(t.dataset.up==='bg.img')S.bg.type='image';all();admin()}
 if(t.dataset.font!==undefined&&t.files.length){for(const f of t.files){const url=API?await host(f,f.name):await new Promise(r=>{const x=new FileReader();x.onload=()=>r(x.result);x.readAsDataURL(f)});S.fonts.push({name:f.name.replace(/\.\w+$/,'').replace(/["']/g,''),url})}save();loadFonts();admin();flash('font added: pick it from any font menu')}
+if(t.dataset.photoadd!==undefined&&f){S.cover.push({t:'img',src:await img(f,900),x:35,y:30,w:22,r:0});all();admin()}
 if(t.dataset.cutadd!==undefined&&f){S.cover.push({t:'cut',src:await img(f,900),x:35,y:30,w:22,r:0});all();admin()}
 if(t.dataset.cadd!==undefined&&f){S.cw.push({t:'img',src:await img(f),x:30,y:30,w:24,r:0});all();admin()}
 if(t.dataset.imp!==undefined&&f){try{S=merge(JSON.parse(JSON.stringify(D)),JSON.parse(await f.text()));all();loadFonts();admin()}catch(x){alert('That file could not be read.')}}}catch(x){alert('Something went wrong: '+x.message)}});
 $('#adm').addEventListener('click',async e=>{const t=e.target,a=t.dataset.act;
 if(t.dataset.del){S.items.splice(+t.dataset.del,1);all();admin()}if(t.dataset.delm){const m=S.msgs[+t.dataset.delm];if(API&&m.id)await fetch('/api/messages?id='+m.id,{method:'DELETE',headers:hdr()});S.msgs.splice(+t.dataset.delm,1);admin()}
 if(t.dataset.delc){const[k,i]=t.dataset.delc.split('.');S[k].splice(+i,1);all();admin()}
+if(a==='save'){clearTimeout(tm);if(API)await push();else{save();flash('saved in this browser')}}
+if(a==='resetcover'&&confirm('Put the cover back to how it started?')){S.cover=JSON.parse(JSON.stringify(D.cover));all();admin()}
 if(a==='editcover'){const c=$('#cover');c._ed=!c._ed;rCover();admin();if(c._ed)$('#welcome').scrollIntoView({behavior:'smooth'})}
 if(a==='addctxt'){S.cover.push({t:'txt',h:'',html:'write here',f:'Reenie Beanie',s:200,c:S.ty.hand.c,x:30,y:60,w:30,r:-3});all();admin()}
 if(a==='addnote'){S.cover.push({t:'note',txt:'hello!',x:40,y:40,w:14,r:4});all();admin()}
 if(a==='nogirl'){S.girl=null;all()}if(a==='nobag'){S.bag=null;all()}
 if(a==='edit'){const s=$('#cstage');s._ed=!s._ed;rCollage();admin();if(s._ed)$('#collage').scrollIntoView({behavior:'smooth'})}
 if(a==='addtxt'){S.cw.push({t:'txt',h:'New',html:'write here',x:10,y:10,w:30,r:0});all();admin()}
-if(a==='additem'){const f=$('#ni').files[0];if(!f)return alert('Choose an image first.');S.items.push({img:await img(f,400),name:$('#nn').value||'item',desc:$('#nd').value,x:10+Math.random()*70,y:35+Math.random()*45,r:Math.round(Math.random()*30-15)});all();admin()}
+if(a==='additem'){const f=$('#ni').files[0],lk=fixUrl($('#nl').value.trim());if(!f&&!lk)return alert('Choose an image or paste a link first.');S.items.push({img:f?await img(f,400):lk,name:$('#nn').value||'item',desc:$('#nd').value,x:10+Math.random()*70,y:35+Math.random()*45,r:Math.round(Math.random()*30-15)});all();admin()}
 if(a==='export'){const l=document.createElement('a');l.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:'application/json'}));l.download='myworld-settings.json';l.click()}
 if(a==='reset'&&confirm('Erase all your changes in this browser?')){localStorage.removeItem(KEY);location.reload()}});
 $('#admtog').onclick=()=>$('#adm').classList.toggle('on');
 async function gate(){if(location.hash!=='#admin')return;const p=prompt('passcode?');if(p===null)return;let ok=false;
 if(API){const r=await fetch('/api/messages',{headers:{'x-admin':p}}).catch(()=>null);if(r&&r.ok){ok=true;PW=p;S.msgs=await r.json()}}else ok=p===PASS;
-if(!ok)return alert('wrong passcode');$('#adm').dataset.ok='1';$('#admtog').style.display='block';admin();$('#adm').classList.add('on');if(API&&!REMOTE)push()}
+if(!ok)return alert('wrong passcode');$('#adm').dataset.ok='1';document.body.classList.add('isadm');$('#admtog').style.display='block';admin();$('#adm').classList.add('on');if(API&&!REMOTE)push()}
 addEventListener('hashchange',gate);
 (async()=>{await boot();loadFonts();all();gate()})();
 </script></body></html>
